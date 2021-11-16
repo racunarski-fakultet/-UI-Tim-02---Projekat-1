@@ -5,7 +5,7 @@ import java.sql.*;
 public class Query4 extends AbstractQuery{
 
     @Override
-    public void executeQuery() {
+    public void executeQuery() throws SQLException {
         Connection myConnection = null;
         CallableStatement myCall = null;
         ResultSet myResultSet = null;
@@ -26,27 +26,9 @@ public class Query4 extends AbstractQuery{
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if(myConnection != null) {
-                try {
-                    myConnection.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(myCall != null) {
-                try {
-                    myCall.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if(myResultSet != null) {
-                try {
-                    myResultSet.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            if (myConnection!= null) myConnection.close();
+            if (myCall      != null) myCall.close();
+            if (myResultSet != null) myResultSet.close();
         }
     }
 }

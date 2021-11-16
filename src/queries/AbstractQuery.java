@@ -1,5 +1,6 @@
 package queries;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public abstract class AbstractQuery {
@@ -8,5 +9,5 @@ public abstract class AbstractQuery {
     String password = "student";
     Scanner scanner;
 
-    public abstract void executeQuery();
+    public abstract void executeQuery() throws SQLException;
 }
