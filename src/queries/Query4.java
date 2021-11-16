@@ -17,10 +17,10 @@ public class Query4 extends AbstractQuery{
         ResultSet myResultSet = null;
 
         try {
-            myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database, username, database);
+            myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database, username, password);
             myCall = myConnection.prepareCall("{call prodavnica_info(?,?,?,?)}");
 
-            myCall.setString(1, "'" + storeName + "'");
+            myCall.setString(1,storeName);
             myCall.registerOutParameter(2, Types.INTEGER);
             myCall.registerOutParameter(3, Types.DECIMAL);
             myCall.registerOutParameter(4, Types.DECIMAL);

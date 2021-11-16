@@ -16,14 +16,15 @@ public class Query11 extends AbstractQuery{
         ResultSet myResultSet = null;
 
         try {
-            myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database, username, database);
-            myCall = myConnection.prepareCall("{call getProductModelBuyersByCountry(?,?)}");
+            myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database, username, password);
+            myCall = myConnection.prepareCall("{call getProductInfoByLanguage(?,?)}");
 
-            myCall.setString(1, "'" + languageName + "'");
+            myCall.setString(1, languageName);
             myCall.registerOutParameter(2, Types.INTEGER);
 
-            int flag = myCall.getInt(2);
 
+
+            int flag = myCall.getInt(2);
             myCall.execute();
             myResultSet = myCall.getResultSet();
 
