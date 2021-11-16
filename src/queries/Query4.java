@@ -11,7 +11,7 @@ public class Query4 extends AbstractQuery{
         ResultSet myResultSet = null;
 
         try {
-            myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/adventureworks", "student", "student");
+            myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database, username, database);
             myCall = myConnection.prepareCall("{call procedure_name(?)}"); // svaki parametar je jedan upitnik
             //myCall.setString(1, 'NC-17'), ovo je primer za prosledjivanje input parametra
             //myCall.registerOutParameter(1, Types.INTEGER), primer za dobivanje out parametra

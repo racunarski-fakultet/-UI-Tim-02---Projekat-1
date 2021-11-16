@@ -11,7 +11,7 @@ public class Query1 extends AbstractQuery{
         ResultSet myResultSet = null;
 
         try {
-            myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/adventureworks", "student", "student");
+            myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database, username, password);
             myStatement = myConnection.createStatement();
             myResultSet = myStatement.executeQuery("select * from employees");
 
