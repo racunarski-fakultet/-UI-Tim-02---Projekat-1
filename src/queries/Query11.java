@@ -22,22 +22,21 @@ public class Query11 extends AbstractQuery{
             myCall.setString(1, languageName);
             myCall.registerOutParameter(2, Types.INTEGER);
 
-
+            myCall.execute();
 
             int flag = myCall.getInt(2);
-            myCall.execute();
+
+            if(flag == 1){
+                System.out.println("Na datom jeziku nije napisano nijedno uputstvo.");
+                return;
+            }
             myResultSet = myCall.getResultSet();
 
             while(myResultSet.next()){
-                if(flag == 1){
-                    System.out.println("Na datom jeziku nije napisano nijedno uputstvo.");
-                }
-                else{
-                    System.out.println(myResultSet.getInt(1) + " -- " +  myResultSet.getString(2) + " -- " +
-                            myResultSet.getBigDecimal(3));
-                }
+                System.out.println(myResultSet.getInt(1) + " -- " +  myResultSet.getString(2) + " -- " +
+                        myResultSet.getBigDecimal(3));
+
             }
-            if(flag == 0)
                 System.out.println("COLUMNS: Product ID -- Product name -- Product price\n");
 
         } catch (SQLException e) {
