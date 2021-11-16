@@ -1,26 +1,41 @@
 package queries;
 
+import java.math.BigDecimal;
 import java.sql.*;
+import java.util.Scanner;
 
 public class Query4 extends AbstractQuery{
 
     @Override
     public void executeQuery() throws SQLException {
+        System.out.println("Unesite ime prodavnice:"); //TODO Ispisati korisniku par imena prodavnica sa kojima se moze ovo testirati.
+        scanner = new Scanner(System.in);
+        String storeName = scanner.nextLine();
+
         Connection myConnection = null;
         CallableStatement myCall = null;
         ResultSet myResultSet = null;
 
         try {
             myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database, username, database);
-            myCall = myConnection.prepareCall("{call procedure_name(?,?,?)}"); // svaki parametar je jedan upitnik
-            //myCall.setString(1, 'NC-17'), ovo je primer za prosledjivanje input parametra
-            //myCall.registerOutParameter(2, Types.INTEGER), primer za dobivanje out parametra
-            //int count = myCall.getInt(2), ovako onda dobijemo taj out parametar u promenljivu da mozemo da ga printamo
+            myCall = myConnection.prepareCall("{call prodavnica_info(?,?,?,?)}");
+
+            myCall.setString(1, "'" + storeName + "'");
+            myCall.registerOutParameter(2, Types.INTEGER);
+            myCall.registerOutParameter(3, Types.DECIMAL);
+            myCall.registerOutParameter(4, Types.DECIMAL);
+
+            int brojNarudzbina = myCall.getInt(2);
+            BigDecimal ukupnaZarada = myCall.getBigDecimal(3);
+            BigDecimal prosecnoProizvodaPoNarudzbini = myCall.getBigDecimal(4);
+
             myCall.execute();
             myResultSet = myCall.getResultSet();
 
-            while(myResultSet.next()){//todo mozda nije potrebno, proveri
-                //npr. System.out.println(count aslkjdfhasdkljh);
+            while(myResultSet.next()){
+                System.out.println("Number of orders since opening = " + brojNarudzbina);
+                System.out.println("Total profit = " + ukupnaZarada);
+                System.out.println("Avg. qty. of products by order = " + prosecnoProizvodaPoNarudzbini);
             }
 
         } catch (SQLException e) {
