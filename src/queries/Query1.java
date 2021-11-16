@@ -13,11 +13,12 @@ public class Query1 extends AbstractQuery{
         try {
             myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database, username, password);
             myStatement = myConnection.createStatement();
-            myResultSet = myStatement.executeQuery("select * from employees");
+            myResultSet = myStatement.executeQuery("SELECT * FROM adventureworks.product_category");
 
             while(myResultSet.next()){
-                //npr. System.out.println(myResultSet.getString(indeks(krecu od 1) ili ime kolone));
+                System.out.println(myResultSet.getString("Product name") + " -- " +  myResultSet.getString("Category name"));
             }
+            System.out.println("COLUMNS: Product name -- Category name\n");
 
         } catch (SQLException e) {
             e.printStackTrace();

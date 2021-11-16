@@ -12,15 +12,15 @@ public class Query4 extends AbstractQuery{
 
         try {
             myConnection = DriverManager.getConnection("jdbc:mysql://localhost:3306/" + database, username, database);
-            myCall = myConnection.prepareCall("{call procedure_name(?)}"); // svaki parametar je jedan upitnik
+            myCall = myConnection.prepareCall("{call procedure_name(?,?,?)}"); // svaki parametar je jedan upitnik
             //myCall.setString(1, 'NC-17'), ovo je primer za prosledjivanje input parametra
-            //myCall.registerOutParameter(1, Types.INTEGER), primer za dobivanje out parametra
-            //int count = myCall.getInt(1), ovako onda dobijemo taj out parametar u promenljivu da mozemo da ga printamo
+            //myCall.registerOutParameter(2, Types.INTEGER), primer za dobivanje out parametra
+            //int count = myCall.getInt(2), ovako onda dobijemo taj out parametar u promenljivu da mozemo da ga printamo
             myCall.execute();
             myResultSet = myCall.getResultSet();
 
-            while(myResultSet.next()){
-                //npr. System.out.println(myResultSet.getXXX(NESTO));
+            while(myResultSet.next()){//todo mozda nije potrebno, proveri
+                //npr. System.out.println(count aslkjdfhasdkljh);
             }
 
         } catch (SQLException e) {
