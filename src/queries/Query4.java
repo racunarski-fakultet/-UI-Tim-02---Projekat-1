@@ -25,18 +25,15 @@ public class Query4 extends AbstractQuery{
             myCall.registerOutParameter(3, Types.DECIMAL);
             myCall.registerOutParameter(4, Types.DECIMAL);
 
+            myCall.execute();
+
             int brojNarudzbina = myCall.getInt(2);
             BigDecimal ukupnaZarada = myCall.getBigDecimal(3);
             BigDecimal prosecnoProizvodaPoNarudzbini = myCall.getBigDecimal(4);
 
-            myCall.execute();
-            myResultSet = myCall.getResultSet();
-
-            while(myResultSet.next()){
-                System.out.println("Number of orders since opening = " + brojNarudzbina);
-                System.out.println("Total profit = " + ukupnaZarada);
-                System.out.println("Avg. qty. of products by order = " + prosecnoProizvodaPoNarudzbini);
-            }
+            System.out.println("Number of orders since opening = " + brojNarudzbina);
+            System.out.println("Total profit = " + ukupnaZarada);
+            System.out.println("Avg. qty. of products by order = " + prosecnoProizvodaPoNarudzbini);
 
         } catch (SQLException e) {
             e.printStackTrace();
