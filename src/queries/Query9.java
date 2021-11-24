@@ -9,6 +9,7 @@ public class Query9 extends AbstractQuery{
     @Override
     public void executeQuery() throws SQLException {
         System.out.println("Unesite ime modela:"); //TODO Ispisati korisniku par imena modela sa kojima se moze ovo testirati.
+        System.out.println("Primeri: Classic Vest, Classic Vest, Full-Finger Gloves, Half-Finger Gloves, HL Mountain Frame");
         scanner = new Scanner(System.in);
         String modelName = scanner.nextLine();
 

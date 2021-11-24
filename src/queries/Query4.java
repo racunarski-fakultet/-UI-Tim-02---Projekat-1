@@ -9,6 +9,7 @@ public class Query4 extends AbstractQuery{
     @Override
     public void executeQuery() throws SQLException {
         System.out.println("Unesite ime prodavnice:"); //TODO Ispisati korisniku par imena prodavnica sa kojima se moze ovo testirati.
+        System.out.println("Primeri: A Bike Store, Progressive Sports, Advanced Bike Components, Modular Cycle Systems");
         scanner = new Scanner(System.in);
         String storeName = scanner.nextLine();
 

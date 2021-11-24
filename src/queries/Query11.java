@@ -8,6 +8,7 @@ public class Query11 extends AbstractQuery{
     @Override
     public void executeQuery() throws SQLException {
         System.out.println("Unesite ime jezika:"); //TODO Ispisati korisniku par imena jezika sa kojima se moze ovo testirati.
+        System.out.println("Moguci jezici: Arabic, English, Spanish, French, Hebrew,Thai, Chinese");
         scanner = new Scanner(System.in);
         String languageName = scanner.nextLine();
 
